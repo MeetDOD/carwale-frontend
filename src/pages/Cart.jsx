@@ -60,12 +60,12 @@ const Cart = () => {
             const { nonce } = await instance.requestPaymentMethod();
             const { data } = await axios.post("https://velocity-vehicles-backend-production.up.railway.app/api/car/braintree/payment", {
                 nonce,
-                cart,
+                cart
             });
             setLoading(false);
             localStorage.removeItem("cart");
             setcart([]);
-            navigate("/dashboard/user/orders");
+            navigate("/dashboard/user/order");
             alert("Payment Completed Successfully ");
         } catch (error) {
             console.log(error);
@@ -167,7 +167,7 @@ const Cart = () => {
                                 </div>
                             )}
                             <div className="mt-2">
-                                {!auth?.token ? (
+                                {!clientToken || !auth?.token || !cart?.length ? (
                                     ""
                                 ) : (
                                     <>
@@ -184,7 +184,7 @@ const Cart = () => {
                                         <button
                                             className="btn btn-primary"
                                             onClick={handlePayment}
-                                            disabled={loading || instance || !auth?.user?.address}
+                                            disabled={loading || !instance || !auth?.user?.address}
                                         >
                                             {loading ? "Processing ...." : "Make Payment"}
                                         </button>

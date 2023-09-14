@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import "./carcard.css";
 import { Link } from 'react-router-dom';
 import { AiFillCar } from 'react-icons/ai'
 import { useCart } from '../context/cart'

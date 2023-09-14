@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useAuth } from '../context/auth'
-import vd from './vd.png'
 import { useCart } from '../context/cart'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { BiSolidCarGarage } from 'react-icons/bi'
 
 function Navbar() {
 
@@ -38,8 +39,8 @@ function Navbar() {
             <nav className={color ? "header header-bg" : "header"}>
                 <div class="wrapper">
                     <div class="logo">
-                        <Link to='/' style={{ textDecoration: 'none' }}>
-                            <img src={vd} height="150" alt="logo" />
+                        <Link to='/' style={{ textDecoration: 'none' }} className="text-center text-warning">
+                            <BiSolidCarGarage /> VELOCITY <BiSolidCarGarage />
                         </Link>
                     </div>
                     <input type="radio" name="slider" id="menu-btn" />
@@ -79,7 +80,7 @@ function Navbar() {
                         }
                         <Link to='/cart' style={{ textDecoration: 'none' }} onClick={handleClick}>
                             <li className=' text-dark'>
-                                <a className='hoverBot'>Cart {cart?.length}</a>
+                                <a className='hoverBot'><AiOutlineShoppingCart size={30} /> {cart?.length}</a>
                             </li>
                         </Link>
                     </ul>

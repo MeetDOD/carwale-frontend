@@ -5,7 +5,12 @@ import { AiOutlineArrowRight } from 'react-icons/ai'
 const Aboutus = () => {
     return (
         <div>
-            <div class="text-center mt-5 pt-5">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="text-center">
                 <h1 class="heading">About<span className='text-warning'>Us</span></h1>
             </div>
             <div class="container-xxl py-5">

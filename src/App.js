@@ -18,6 +18,10 @@ import Cars from './admin/Cars';
 import './main.css'
 import CarView from './smallcomponents/CarView';
 import Cart from './pages/Cart';
+import AdminOrders from './admin/AdminOrders';
+import Aboutus from './smallcomponents/Aboutus';
+import Footer from './smallcomponents/Footer';
+import Brands from './pages/Brands';
 
 function App() {
   return (
@@ -27,6 +31,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/cart' element={<Cart/>} />
+          <Route path='/about' element={<Aboutus/>} />
+          <Route path='/brands' element={<Brands />} />
           <Route path='/car/:slug' element={<CarView/>} />
           <Route path='/dashboard' element={<PrivateRoute/>}>
             <Route path='user' element={<UserDashboard/>} />
@@ -40,11 +46,13 @@ function App() {
             <Route path='admin/car/:slug' element={<UpdateCar/>} />
             <Route path='admin/cars' element={<Cars/>} />
             <Route path='admin/user' element={<User/>} />
+            <Route path='admin/userorders' element={<AdminOrders/>} />
           </Route>
           <Route path='/register' element={<Regoister/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/*' element={<NotFound/>} />
         </Routes>
+        <Footer/>
       </Router>
     </>
   );

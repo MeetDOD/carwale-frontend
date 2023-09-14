@@ -51,3 +51,8 @@ ul {
   color: white;
   transition: 0.3s;
 }
+
+.hoverLink:hover {
+  color: #ffc107;
+  transition: 0.7s ease-in-out;
+}

@@ -29,7 +29,7 @@ nav .wrapper {
   list-style: none;
 }
 .nav-links li a {
-  color: #f2f2f2;
+  color: #ffc107;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -40,7 +40,7 @@ nav .wrapper {
 }
 
 .nav-links li a:not(.moreLinks):hover::before {
-  background-color: #fff701;
+  background-color: #ffc107;
   transition: 0.5s;
 }
 
