@@ -9,7 +9,7 @@ const Cars = () => {
 
     const getAllcars = async () => {
         try {
-            const data = await fetch("https://velocity-backend.onrender.com/api/car/getAll-car", {
+            const data = await fetch("https://velocity-vehicles-backend-production.up.railway.app/api/car/getAll-car", {
                 method: "GET",
                 headers: { "Content-type": "application/json" }
             })
@@ -34,7 +34,7 @@ const Cars = () => {
 
     const handleDelete = async (id) => {
         try {
-            const { data } = await axios.delete(`https://velocity-backend.onrender.com/api/car/delete-car/${id}`)
+            const { data } = await axios.delete(`https://velocity-vehicles-backend-production.up.railway.app/api/car/delete-car/${id}`)
             if (data?.success) {
                 alert('Deleted')
                 getAllcars()
@@ -72,7 +72,7 @@ const Cars = () => {
                                         <p className="card-text">{truncateText(p.description, 4)}</p>
                                         <Link to={`/dashboard/admin/car/${p.slug}`} key={p._id} >
                                             <img
-                                                src={`https://velocity-backend.onrender.com/${p.productPictures[0]}`}
+                                                src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`}
                                                 height='180px' width='255px' alt={p.name}
                                             />
                                         </Link>

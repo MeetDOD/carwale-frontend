@@ -14,7 +14,7 @@ const CreateCategory = () => {
 
     const getAllBrand = async () => {
         try {
-            const { data } = await axios.get('https://velocity-backend.onrender.com/api/brand/getAll-brand')
+            const { data } = await axios.get('https://velocity-vehicles-backend-production.up.railway.app/api/brand/getAll-brand')
             if (data.success) {
                 setBrand(data.brand)
             }
@@ -26,7 +26,7 @@ const CreateCategory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.post('https://velocity-backend.onrender.com/api/brand/create-brand', { name })
+            const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/brand/create-brand', { name })
             if (data?.success) {
                 alert('Brand Created')
                 getAllBrand()
@@ -41,7 +41,7 @@ const CreateCategory = () => {
     const handleUpdate = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.put(`https://velocity-backend.onrender.com/api/brand/update-brand/${selected._id}`, { name: updatedName })
+            const { data } = await axios.put(`https://velocity-vehicles-backend-production.up.railway.app/api/brand/update-brand/${selected._id}`, { name: updatedName })
             if (data?.success) {
                 alert('Brand Updated')
                 setSelected(null)
@@ -58,7 +58,7 @@ const CreateCategory = () => {
 
     const handleDelete = async (id) => {
         try {
-            const { data } = await axios.delete(`https://velocity-backend.onrender.com/api/brand/delete-brand/${id}`, { name: updatedName })
+            const { data } = await axios.delete(`https://velocity-vehicles-backend-production.up.railway.app/api/brand/delete-brand/${id}`, { name: updatedName })
             if (data?.success) {
                 alert(`${name} Deleted`)
                 getAllBrand()

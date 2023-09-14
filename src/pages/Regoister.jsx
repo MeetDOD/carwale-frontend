@@ -15,7 +15,7 @@ const Regoister = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('https://velocity-backend.onrender.com/api/user/register', {
+            const res = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/user/register', {
                 name, email, password, phone, address
             });
             if (res.data.success) {

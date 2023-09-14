@@ -10,7 +10,7 @@ const CarView = () => {
 
     const getCar = async () => {
         try {
-            const { data } = await axios.get(`https://velocity-backend.onrender.com/api/car/getCarById-car/${params.slug}`);
+            const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/car/getCarById-car/${params.slug}`);
             setCar(data.car);
             console.log(car)
         } catch (err) {
@@ -25,7 +25,7 @@ const CarView = () => {
         }
     }, [params?.slug]);
 
-    const imageUrls = car.productPictures.map(picture => `https://velocity-backend.onrender.com/${picture}`);
+    const imageUrls = car.productPictures.map(picture => `https://velocity-vehicles-backend-production.up.railway.app/${picture}`);
 
     return (
         <div className='container'>
@@ -38,7 +38,7 @@ const CarView = () => {
                 <div className="col-md-7 text-center">
                     <ReactImageTurntable images={imageUrls} />
                     {/* <img
-                        src={`https://velocity-backend.onrender.com/${car.productPictures}`}
+                        src={`https://velocity-vehicles-backend-production.up.railway.app/${car.productPictures}`}
                         height='180px' width='255px' alt={car.name}
                     /> */}
                     <Tb360View size={50} />

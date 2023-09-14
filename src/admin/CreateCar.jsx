@@ -30,7 +30,7 @@ const CreateCar = () => {
 
     const getAllCar = async () => {
         try {
-            const { data } = await axios.get('https://velocity-backend.onrender.com/api/brand/getAll-brand');
+            const { data } = await axios.get('https://velocity-vehicles-backend-production.up.railway.app/api/brand/getAll-brand');
             if (data.success) {
                 setBrands(data?.brand);
             }
@@ -69,7 +69,7 @@ const CreateCar = () => {
             });
             console.log(productPictures)
 
-            const { data } = await axios.post('https://velocity-backend.onrender.com/api/car/create-car', carData);
+            const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/car/create-car', carData);
 
             if (data.success) {
                 alert('Car Created Successfully');
