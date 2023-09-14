@@ -18,11 +18,12 @@ const Cart = () => {
         try {
             let total = 0;
             cart?.map((item) => {
-                total = total + item.price;
+                const po = item.price.replace(' lakh', '')
+                total = total + parseInt(po);
             });
             return total.toLocaleString("en-US", {
                 style: "currency",
-                currency: "USD",
+                currency: "INR",
             });
         } catch (error) {
             console.log(error);
@@ -43,7 +44,7 @@ const Cart = () => {
 
     const getToken = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/car/braintree/token");
+            const { data } = await axios.get("https://velocity-backend.onrender.com/api/car/braintree/token");
             setClientToken(data?.clientToken);
         } catch (error) {
             console.log(error);
@@ -57,7 +58,7 @@ const Cart = () => {
         try {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
-            const { data } = await axios.post("http://localhost:5000/api/car/braintree/payment", {
+            const { data } = await axios.post("https://velocity-backend.onrender.com/api/car/braintree/payment", {
                 nonce,
                 cart,
             });
@@ -101,7 +102,7 @@ const Cart = () => {
                                 <div className="row card flex-row my-3" key={p._id}>
                                     <div className="col-md-4">
                                         <img
-                                            src={`http://localhost:5000/${p.productPictures[0]}`}
+                                            src={`https://velocity-backend.onrender.com/${p.productPictures[0]}`}
                                             className="card-img-top"
                                             alt={p.name}
                                             width="100%"
@@ -111,7 +112,7 @@ const Cart = () => {
                                     <div className="col-md-4">
                                         <p>{p.name}</p>
                                         <p>{p.description.substring(0, 30)}</p>
-                                        {/* <p>Price : {p.price}</p> */}
+                                        <p>Price : {p.price}</p>
                                     </div>
                                     <div className="col-md-4 cart-remove-btn">
                                         <button
@@ -128,7 +129,7 @@ const Cart = () => {
                             <h2>Cart Summary</h2>
                             <p>Total | Checkout | Payment</p>
                             <hr />
-                            <h4>Total : {totalPrice()} </h4>
+                            <h4>Total : {totalPrice()} Lakhs</h4>
                             {auth?.user?.address ? (
                                 <>
                                     <div className="mb-3">

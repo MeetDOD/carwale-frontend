@@ -9,7 +9,7 @@ const CarCard = () => {
     const [cart, setcart] = useCart()
     const getAllcars = async () => {
         try {
-            const data = await fetch("http://localhost:5000/api/car/getAll-car", {
+            const data = await fetch("https://velocity-backend.onrender.com/api/car/getAll-car", {
                 method: "GET",
                 headers: { "Content-type": "application/json" }
             })
@@ -44,13 +44,13 @@ const CarCard = () => {
                                         <p class="text-white mb-0 small"><AiFillCar size={20} /></p>
                                     </div>
                                 </div>
-                                <img src={`http://localhost:5000/${p.productPictures[0]}`} alt={p.name} height={'200px'} class="card-img-top" />
+                                <img src={`https://velocity-backend.onrender.com/${p.productPictures[0]}`} alt={p.name} height={'200px'} class="card-img-top" />
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between mb-3">
                                         <h5 class="mb-0">{p.name}</h5>
                                         <hr />
                                         <br />
-                                        <h6 class="text-dark mb-0">$999</h6>
+                                        <h6 class="text-dark mb-0">{p.price}</h6>
                                     </div>
                                     <div className='text-center d-flex'>
                                         <Link className='btn btn-outline-warning my-2' to={`/car/${p.slug}`}>View</Link>

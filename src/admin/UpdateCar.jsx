@@ -23,7 +23,7 @@ const UpdateCar = () => {
 
     const getSingleProduct = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/car/getCarById-car/${params.slug}`)
+            const { data } = await axios.get(`https://velocity-backend.onrender.com/api/car/getCarById-car/${params.slug}`)
             setname(data.car.name)
             setBrand(data.car.brand)
             setdescription(data.car.description)
@@ -36,7 +36,7 @@ const UpdateCar = () => {
 
     const getAllCarBrand = async () => {
         try {
-            const data = await fetch("http://localhost:5000/api/brand/getAll-brand", {
+            const data = await fetch("https://velocity-backend.onrender.com/api/brand/getAll-brand", {
                 method: "GET",
                 headers: { "Content-type": "application/json" }
             })
@@ -58,7 +58,7 @@ const UpdateCar = () => {
             photo && carData.append('photo', photo)
             carData.append('brand', brand)
 
-            const { data } = await axios.put(`http://localhost:5000/api/car/update-car/${id}`, carData)
+            const { data } = await axios.put(`https://velocity-backend.onrender.com/api/car/update-car/${id}`, carData)
 
             if (data.success) {
                 alert('Car Updated Successfully')
@@ -75,7 +75,7 @@ const UpdateCar = () => {
         try {
             let ans = window.prompt('Are you Sure you want to Delete this Car');
             if (!ans) return;
-            const { data } = await axios.delete(`http://localhost:5000/api/car/delete-car/${id}`)
+            const { data } = await axios.delete(`https://velocity-backend.onrender.com/api/car/delete-car/${id}`)
             alert('Car Deleted')
             navigate('/dashboard/admin/cars')
         } catch (err) {
@@ -136,7 +136,7 @@ const UpdateCar = () => {
                                 ) : (
                                     <div className="text-center">
                                         <img
-                                            src={`http://localhost:5000/${photo.productPictures?.replace(/^uploads\\/, '')}`}
+                                            src={`https://velocity-backend.onrender.com/${photo.productPictures?.replace(/^uploads\\/, '')}`}
                                             alt="product_photo"
                                             height={"200px"}
                                             className="img img-responsive"

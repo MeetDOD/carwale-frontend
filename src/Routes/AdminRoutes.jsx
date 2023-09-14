@@ -10,7 +10,7 @@ export default function AdminRoutes() {
 
     useEffect(() => {
         const authCheck = async () => {
-            const res = await axios.get("http://localhost:5000/api/user/admin-auth");
+            const res = await axios.get("https://velocity-backend.onrender.com/api/user/admin-auth");
             if (res.data.ok) {
                 setOk(true);
             } else {
