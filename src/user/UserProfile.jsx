@@ -89,7 +89,7 @@ const UserProfile = () => {
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center mx-4">
-                                            <button onClick={handleSubmit} type="button" class="btn btn-primary btn-lg">Register</button>
+                                            <button onClick={handleSubmit} type="button" class="btn btn-primary btn-lg">Update</button>
                                         </div>
                                     </form>
                                 </div>
