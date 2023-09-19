@@ -25,21 +25,6 @@ const CreateCategory = () => {
         }
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/brand/create-brand', { name, brandPictures })
-            if (data?.success) {
-                alert('Brand Created')
-                getAllBrand()
-            } else {
-                alert('Error Occured')
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     const handleUpdate = async (e) => {
         e.preventDefault()
         try {
