@@ -8,6 +8,7 @@ const CreateCategory = () => {
 
     const [brand, setBrand] = useState([])
     const [name, setName] = useState("")
+    const [brandPictures, setBrandPictures] = useState("")
     const [visible, setVisible] = useState(false)
     const [selected, setSelected] = useState(null)
     const [updatedName, setUpdatedName] = useState("")
@@ -17,6 +18,7 @@ const CreateCategory = () => {
             const { data } = await axios.get('https://velocity-vehicles-backend-production.up.railway.app/api/brand/getAll-brand')
             if (data.success) {
                 setBrand(data.brand)
+                console.log(data)
             }
         } catch (err) {
             console.log(err)
@@ -26,7 +28,7 @@ const CreateCategory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/brand/create-brand', { name })
+            const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/brand/create-brand', { name, brandPictures })
             if (data?.success) {
                 alert('Brand Created')
                 getAllBrand()
@@ -87,13 +89,13 @@ const CreateCategory = () => {
                         <AdminMenu />
                     </div>
                     <div className='col-md-9 mt-3'>
-                        <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName} />
-                        <h1 className='mx-5'>Manage Brands</h1>
+                        <h1 className='mx-5'>All Brands</h1>
                         <div class="table-responsive mx-5 my-3 text-center">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope='col'>Brand Name</th>
+                                        <th scope='col'>Brand Image</th>
                                         <th scope='col'>Action</th>
                                     </tr>
                                 </thead>
@@ -102,6 +104,10 @@ const CreateCategory = () => {
                                         <tr>
                                             <>
                                                 <td key={c._id}>{c.name}</td>
+                                                <img
+                                                    src={`https://velocity-vehicles-backend-production.up.railway.app/${c.brandPictures}`}
+                                                    height='180px' width='255px' alt={c.name}
+                                                />
                                                 <td><button className='btn btn-primary mx-2' onClick={() => { setVisible(true); setUpdatedName(c.name); setSelected(c) }}>Edit</button>
                                                     <button className='btn btn-danger' onClick={() => handleDelete(c._id)}>Delete</button></td>
                                             </>

@@ -34,10 +34,10 @@ const Brands = () => {
                             <div className="pic">
                                 <a target="_blank" href="https://www.raweng.com/">
                                     <img
-                                        src='https://e7.pngegg.com/pngimages/523/480/png-clipart-enzo-ferrari-car-laferrari-scuderia-ferrari-ferrari-emblem-logo.png'
+                                        src={`https://velocity-vehicles-backend-production.up.railway.app/${c.brandPictures}`}
                                         style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }}
                                         className='p-1'
-                                        alt="Raw Engineering"
+                                        alt="Car Brand"
                                     />
                                     <h1>{c.name}</h1>
                                 </a>

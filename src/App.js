@@ -7,7 +7,6 @@ import Login from './pages/Login';
 import PrivateRoute from './Routes/PrivateRoute';
 import AdminRoutes from './Routes/AdminRoutes';
 import AdminDashboard from './admin/AdminDashboard';
-import CreateCategory from './admin/CreateBrand';
 import User from './admin/AdminUser';
 import UserDashboard from './user/UserDashboard';
 import UserOrder from './user/UserOrder';
@@ -21,7 +20,9 @@ import Cart from './pages/Cart';
 import AdminOrders from './admin/AdminOrders';
 import Aboutus from './smallcomponents/Aboutus';
 import Footer from './smallcomponents/Footer';
-import Brands from './pages/Brands';
+import AllBrands from './pages/AllBrands';
+import CreateBrands from './admin/CreateBrands';
+import Brands from './admin/Brands';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/cart' element={<Cart/>} />
           <Route path='/about' element={<Aboutus/>} />
-          <Route path='/brands' element={<Brands />} />
+          <Route path='/brands' element={<AllBrands />} />
           <Route path='/car/:slug' element={<CarView/>} />
           <Route path='/dashboard' element={<PrivateRoute/>}>
             <Route path='user' element={<UserDashboard/>} />
@@ -41,8 +42,9 @@ function App() {
           </Route>
           <Route path='/dashboard' element={<AdminRoutes/>}>
             <Route path='admin' element={<AdminDashboard/>} />
-            <Route path='admin/create-category' element={<CreateCategory/>} />
+            <Route path='admin/allbrands' element={<Brands/>} />
             <Route path='admin/create-product' element={<CreateCar/>} />
+            <Route path='admin/create-brand' element={<CreateBrands/>} />
             <Route path='admin/car/:slug' element={<UpdateCar/>} />
             <Route path='admin/cars' element={<Cars/>} />
             <Route path='admin/user' element={<User/>} />
