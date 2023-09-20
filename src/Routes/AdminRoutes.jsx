@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/auth";
-import Sipnner from '../components/Spinner'
+import Sipnner from '../admin/Spinner'
 
 export default function AdminRoutes() {
     const [ok, setOk] = useState(false);

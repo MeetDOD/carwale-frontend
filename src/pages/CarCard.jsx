@@ -38,9 +38,10 @@ const CarCard = () => {
                                 <div class="d-flex justify-content-between p-3">
                                     <p class="lead mb-0">Latest Arrival !</p>
                                     <div
-                                        class="bg-warning rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                        class=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                                         style={{ width: '35px', height: '35px' }}>
-                                        <p class="text-white mb-0 small"><AiFillCar size={20} /></p>
+                                        <p class="text-white mb-0 small">                            <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.brand.brandPictures}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }} className='img-fluid' />
+                                        </p>
                                     </div>
                                 </div>
                                 <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} height={'200px'} class="card-img-top" />

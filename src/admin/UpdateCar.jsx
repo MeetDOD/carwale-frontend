@@ -89,19 +89,14 @@ const UpdateCar = () => {
     }, [])
 
     return (
-        <div className='container'>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+        <div className='container marginStyle'>
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-md-3'>
                         <AdminMenu />
                     </div>
-                    <div className='col-md-9 mt-2'>
-                        <h1>Update Car</h1>
+                    <div className='col-md-9 my-3'>
+                        <h1 className='text-center'>Update Car</h1>
                         <div className='m-1'>
                             <Select bordered={false} placeholder='Select A Brand' size='large' showSearch className='form-select mb-3' onChange={(e) => { setBrand(e.target.value) }} value={brand.name}>
                                 {brands?.map(c => (

@@ -1,18 +1,18 @@
 import React from 'react'
-import AdminMenu from './AdminMenu'
 import { useAuth } from '../context/auth'
+import UserMenu from './UserMenu'
 
-const AdminDashboard = () => {
+const UserDashboard = () => {
     const [auth] = useAuth()
 
     return (
         <div className='container marginStyle'>
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-md-3 my-3'>
-                        <AdminMenu />
+                    <div className='col-md-3'>
+                        <UserMenu />
                     </div>
-                    <div className='col-md-9'>
+                    <div className='col-md-9 my-3'>
                         <h3 className='text-center'>Welcome, {auth?.user?.name}</h3>
                     </div>
                 </div>
@@ -21,4 +21,4 @@ const AdminDashboard = () => {
     )
 }
 
-export default AdminDashboard
+export default UserDashboard

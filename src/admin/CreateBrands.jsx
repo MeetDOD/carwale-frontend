@@ -44,21 +44,16 @@ const CreateBrands = () => {
     };
 
     return (
-        <div className='container'>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+        <div className='container marginStyle'>
             {!loading ? (
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-md-3'>
                             <AdminMenu />
                         </div>
-                        <div className='col-md-9 mt-2'>
+                        <div className='col-md-9 my-3'>
                             <form method='post' enctype="multipart/form-data">
-                                <h1>Create Brand</h1>
+                                <h1 className='text-center'>Create Brand</h1>
                                 <div className='m-1'>
                                     <div className='mb-3'>
                                         <input

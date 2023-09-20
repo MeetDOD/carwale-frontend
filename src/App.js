@@ -1,62 +1,60 @@
+import './App.css';
+import Footer from './Home/Footer';
+import HomeMain from './Home/HomeMain';
+import Navbar from './Home/Navbar';
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom'
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
-import Navbar from './components/Navbar';
-import Regoister from './pages/Regoister';
 import Login from './pages/Login';
-import PrivateRoute from './Routes/PrivateRoute';
+import Register from './pages/Register';
 import AdminRoutes from './Routes/AdminRoutes';
 import AdminDashboard from './admin/AdminDashboard';
-import User from './admin/AdminUser';
-import UserDashboard from './user/UserDashboard';
-import UserOrder from './user/UserOrder';
-import UserProfile from './user/UserProfile';
 import CreateCar from './admin/CreateCar';
 import UpdateCar from './admin/UpdateCar';
 import Cars from './admin/Cars';
-import './main.css'
-import CarView from './smallcomponents/CarView';
-import Cart from './pages/Cart';
 import AdminOrders from './admin/AdminOrders';
-import Aboutus from './smallcomponents/Aboutus';
-import Footer from './smallcomponents/Footer';
-import AllBrands from './pages/AllBrands';
 import CreateBrands from './admin/CreateBrands';
-import Brands from './admin/Brands';
+import BrandsList from './admin/BrandsList';
+import Brands from './Home/Brands';
+import About from './Home/About';
+import PrivateRoute from './Routes/PrivateRoute';
+import UserDashboard from './common/UserDashboard';
+import UserOrder from './common/UserOrder';
+import UserProfile from './common/UserProfile';
+import NotFound from './pages/NotFound';
+import Cart from './pages/Cart';
+import CarsHome from './Home/CarsHome';
+import CarView from './pages/CarView';
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/cart' element={<Cart/>} />
-          <Route path='/about' element={<Aboutus/>} />
-          <Route path='/brands' element={<AllBrands />} />
-          <Route path='/car/:slug' element={<CarView/>} />
-          <Route path='/dashboard' element={<PrivateRoute/>}>
-            <Route path='user' element={<UserDashboard/>} />
-            <Route path='user/order' element={<UserOrder/>} />
-            <Route path='user/profile' element={<UserProfile/>} />
-          </Route>
-          <Route path='/dashboard' element={<AdminRoutes/>}>
+    <Router>
+      <Navbar/>
+      <Routes>
+      <Route path='/' element={<HomeMain />} />
+      <Route path='/cart' element={<Cart/>} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/brands' element={<Brands />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/cars' element={<CarsHome />} />
+      <Route path='/car/:slug' element={<CarView/>} />
+      <Route path='/*' element={<NotFound/>} />
+      <Route path='/dashboard' element={<AdminRoutes/>}>
             <Route path='admin' element={<AdminDashboard/>} />
-            <Route path='admin/allbrands' element={<Brands/>} />
+            <Route path='admin/allbrands' element={<BrandsList/>} />
             <Route path='admin/create-product' element={<CreateCar/>} />
             <Route path='admin/create-brand' element={<CreateBrands/>} />
             <Route path='admin/car/:slug' element={<UpdateCar/>} />
             <Route path='admin/cars' element={<Cars/>} />
-            <Route path='admin/user' element={<User/>} />
             <Route path='admin/userorders' element={<AdminOrders/>} />
-          </Route>
-          <Route path='/register' element={<Regoister/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/*' element={<NotFound/>} />
-        </Routes>
-        <Footer/>
-      </Router>
-    </>
+      </Route>
+      <Route path='/dashboard' element={<PrivateRoute/>}>
+            <Route path='user' element={<UserDashboard/>} />
+            <Route path='user/order' element={<UserOrder/>} />
+            <Route path='user/profile' element={<UserProfile/>} />
+      </Route>
+      </Routes>
+      <Footer/>
+    </Router>
   );
 }
 

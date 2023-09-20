@@ -2,9 +2,9 @@ import React from 'react'
 
 const NotFound = () => {
     return (
-        <div>
+        <h1 className='text-center marginStyle'>
             404 not found
-        </div>
+        </h1>
     )
 }
 

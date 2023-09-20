@@ -89,21 +89,16 @@ const CreateCar = () => {
     }, []);
 
     return (
-        <div className='container'>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+        <div className='container marginStyle'>
             {!loading ? (
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-md-3'>
                             <AdminMenu />
                         </div>
-                        <div className='col-md-9 mt-2'>
+                        <div className='col-md-9 my-3'>
                             <form method='post' enctype="multipart/form-data">
-                                <h1>Create Car</h1>
+                                <h1 className='text-center'>Create Car</h1>
                                 <div className='m-1'>
                                     <Select
                                         bordered={false}
