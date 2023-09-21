@@ -29,3 +29,14 @@ h3 {
   margin-top: 120px;
   margin-bottom: 150px;
 }
+
+.cartStyle {
+  background-image: linear-gradient(
+    to top,
+    #9d68ce,
+    #9958da,
+    #9446e7,
+    #8d2ff3,
+    #8400ff
+  );
+}

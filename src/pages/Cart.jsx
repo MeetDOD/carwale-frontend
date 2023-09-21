@@ -138,7 +138,7 @@ const Cart = () => {
                                         </div>
 
                                         <div class="col-lg-5">
-                                            <div class="card text-white rounded-3" style={{ backgroundColor: 'blueviolet' }}>
+                                            <div class="card text-white rounded-3 cartStyle">
                                                 <div className='card-body'>
                                                     <div className="text-center">
                                                         <h2>Cart Summary</h2>
