@@ -61,7 +61,7 @@ const CarsHome = () => {
                                     </div>
                                 </div>
                                 <Link to={`/car/${p.slug}`} className='text-center'>
-                                    <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '190px', objectFit: 'contain' }} />
+                                    <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }} />
                                 </Link>
                                 <div className="card-body">
                                     <h4 className="text-center mb-4">{p.name}</h4>
