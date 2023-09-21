@@ -1,6 +1,7 @@
 import React from 'react'
 import hero from '../images/hero.png'
 import '../styles/hero.css'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
     return (
@@ -16,7 +17,7 @@ const Hero = () => {
                             <h1 className="banner-title">Driving Dreams into <span>Reality</span> with us</h1>
                             <p className="banner-title-text">Experience car buying like never before. CarWale offers an extensive range of options, unbeatable deals, expert guidance, and a hassle-free journey to your dream car. Discover, compare, and drive with confidence.</p>
                             <div className="learn-more-btn-section">
-                                <a className="nav-link learn-more-btn btn-header" href="#about">Shop Now</a>
+                                <Link to='/cars' className="nav-link learn-more-btn btn-header" href="#car">Shop Now</Link>
                             </div>
                         </div>
                     </div>

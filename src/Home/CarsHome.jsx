@@ -36,7 +36,7 @@ const CarsHome = () => {
 
     return (
         <>
-            <div className="brand_wrapper">
+            <div className="brand_wrapper" id='cars'>
                 <div className="col-12 text-center">
                     <p className="brand_subtitle">A Wide Range of Cars Awaits!</p>
                     <h2 className="brand_title">Cars showcase</h2>
