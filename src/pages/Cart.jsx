@@ -116,7 +116,7 @@ const Cart = () => {
 
                                                                 </div>
                                                                 <div className="mx-2">
-                                                                    <p className='sizePrice'>{p.brand.name}</p>
+                                                                    <p className='sizePrice'><span className='badge rounded-pill text-bg-primary'>{p.brand.name}</span></p>
                                                                     <p className="sizePrice">{p.name}</p>
                                                                 </div>
                                                             </div>
