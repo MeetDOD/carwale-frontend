@@ -40,3 +40,15 @@ h3 {
     #8400ff
   );
 }
+
+@media (max-width: 600px) {
+  .sizePrice {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 601px) {
+  .sizePrice {
+    font-size: 20px;
+  }
+}

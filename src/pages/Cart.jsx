@@ -4,7 +4,6 @@ import { useAuth } from '../context/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import DropIn from "braintree-web-drop-in-react";
 import axios from 'axios'
-import { BsFuelPump } from 'react-icons/bs'
 import { HiOutlineTrash } from 'react-icons/hi'
 
 const Cart = () => {
@@ -75,24 +74,24 @@ const Cart = () => {
     };
     return (
         <div className='marginStyle'>
-            <section class="h-100 h-custom">
-                <div class="container py-5 h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body p-4">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <h5 class="mb-3">{!auth?.user
+            <section className="h-100 h-custom">
+                <div className="container py-5 h-100">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col">
+                            <div className="card">
+                                <div className="card-body p-4">
+                                    <div className="row">
+                                        <div className="col-lg-7">
+                                            <h5 className="mb-3">{!auth?.user
                                                 ? "Hello Guest"
                                                 : `Hello  ${auth?.token && auth?.user?.name}`}
                                             </h5>
                                             <hr />
 
-                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <div className="d-flex justify-content-between align-items-center mb-4">
                                                 <div>
-                                                    <p class="mb-1">Shopping cart</p>
-                                                    <p class="mb-0">{cart?.length
+                                                    <p className="mb-1">Shopping cart</p>
+                                                    <p className="mb-0">{cart?.length
                                                         ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
                                                         }`
                                                         : " Your Cart Is Empty"}
@@ -101,10 +100,10 @@ const Cart = () => {
                                             </div>
 
                                             {cart?.map((p) => (
-                                                <div class="card my-3 mb-lg-0">
-                                                    <div class="card-body">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div class="d-flex flex-row align-items-center">
+                                                <div className="card my-3 mb-lg-0">
+                                                    <div className="card-body">
+                                                        <div className="d-flex justify-content-between">
+                                                            <div className="d-flex flex-row align-items-center">
                                                                 <div>
                                                                     <Link to={`/car/${p.slug}`} className='text-center'>
                                                                         <img
@@ -116,13 +115,13 @@ const Cart = () => {
                                                                     </Link>
 
                                                                 </div>
-                                                                <div class="ms-3">
-                                                                    <h5>{p.brand.name}</h5>
-                                                                    <p class="small mb-0">{p.name}</p>
+                                                                <div className="mx-2">
+                                                                    <p className='sizePrice'>{p.brand.name}</p>
+                                                                    <p className="sizePrice">{p.name}</p>
                                                                 </div>
                                                             </div>
-                                                            <div class="d-flex flex-row align-items-center">
-                                                                <h5 class="mx-3"> ₹ {p.price}</h5>
+                                                            <div className="text-center">
+                                                                <p className="sizePrice"> ₹ {p.price}</p>
                                                                 <button
                                                                     className="btn btn-danger"
                                                                     onClick={() => removeCartItem(p._id)}
@@ -136,8 +135,8 @@ const Cart = () => {
                                             ))}
                                         </div>
 
-                                        <div class="col-lg-5">
-                                            <div class="card text-white rounded-3 cartStyle">
+                                        <div className="col-lg-5">
+                                            <div className="card text-white rounded-3 cartStyle">
                                                 <div className='card-body'>
                                                     <div className="text-center">
                                                         <h2>Cart Summary</h2>
