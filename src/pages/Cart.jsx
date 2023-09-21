@@ -122,7 +122,6 @@ const Cart = () => {
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex flex-row align-items-center">
-                                                                <h5 class="fw-normal"><BsFuelPump /> {p.fuelType}</h5>
                                                                 <h5 class="mx-3"> ₹ {p.price}</h5>
                                                                 <button
                                                                     className="btn btn-danger"
