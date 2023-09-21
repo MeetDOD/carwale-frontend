@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ReactImageTurntable } from 'react-image-turntable';
 import { Tb360View } from 'react-icons/tb'
 import '../styles/carview.css'
@@ -9,16 +9,20 @@ import { TbEngine, TbStars } from 'react-icons/tb'
 import { AiOutlineNodeIndex, AiOutlineColumnWidth } from 'react-icons/ai'
 import { MdCompareArrows, MdOutlinePropaneTank, MdAirlineSeatReclineExtra } from 'react-icons/md'
 import { GiBackwardTime } from 'react-icons/gi'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { useCart } from '../context/cart';
+import toast from 'react-hot-toast';
+import { AiOutlineEye } from 'react-icons/ai'
 
 const CarView = () => {
     const params = useParams();
     const [car, setCar] = useState({ name: '', description: '', productPictures: [], price: '', brand: '', fuelTank: '', fuelType: '', mileage: '', safetyrating: '', warranty: '', seater: '', size: '', });
+    const [cart, setcart] = useCart()
 
     const getCar = async () => {
         try {
             const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/car/getCarById-car/${params.slug}`);
             setCar(data.car);
-            console.log(car)
         } catch (err) {
             console.log(err);
         }
@@ -29,7 +33,10 @@ const CarView = () => {
         } else {
             console.log('error')
         }
+        window.scrollTo(0, 0)
     }, [params?.slug]);
+
+    const notify = () => toast.success('Added To Cart Successfully');
 
     const updatedAt = new Date(car.updatedAt).toLocaleString();
 
@@ -65,6 +72,8 @@ const CarView = () => {
                     <h4>{car.name} Description : </h4><h6 className='lh-base'>{car.description}</h6>
                     <h4>Rs. {car.price}</h4>
                     <h4>Released At : {updatedAt}</h4>
+                    <button style={{ backgroundColor: 'blueviolet' }} className='btn text-white my-1' onClick={() => { setcart([...cart, car]); localStorage.setItem('cart', JSON.stringify([...cart, car])); notify() }} ><AiOutlineShoppingCart size={20} className='pb-1' /> Add To Cart</button>
+                    <Link className='btn btn-outline-primary mx-2' to='/cart'><AiOutlineEye size={20} className='pb-1' /> View Cart</Link>
                     <table className="table table-bordered my-4">
                         <thead>
                             <tr>

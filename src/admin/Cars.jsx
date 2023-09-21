@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { BsFuelPumpFill } from 'react-icons/bs'
 import { PiCurrencyInrFill } from 'react-icons/pi'
+import toast from 'react-hot-toast';
 
 const Cars = () => {
 
@@ -38,10 +39,10 @@ const Cars = () => {
         try {
             const { data } = await axios.delete(`https://velocity-vehicles-backend-production.up.railway.app/api/car/delete-car/${id}`)
             if (data?.success) {
-                alert('Deleted')
+                toast.success('Car Deleted Successfully')
                 getAllcars()
             } else {
-                alert('Error Occured')
+                toast.error('Error in Deleting car')
             }
         } catch (err) {
             console.log(err)

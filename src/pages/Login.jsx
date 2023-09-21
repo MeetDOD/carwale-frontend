@@ -1,7 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import logo from '../images/logo.png'
+import login from '../images/login.png'
+import { MdEmail } from 'react-icons/md'
+import { RiLockPasswordFill } from 'react-icons/ri'
 
 const Login = () => {
 
@@ -11,14 +16,27 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation();
 
+    const validateEmail = (email) => {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailPattern.test(email);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!email.trim()) {
+            toast.error('Email is required');
+            return false;
+        }
+        if (!validateEmail(email)) {
+            toast.error('Invalid Email Format');
+            return false;
+        }
         try {
             const res = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/user/login', {
                 email, password
             });
             if (res.data.success) {
-                alert(res.data.message)
+                toast.success(res.data.message)
                 setAuth({
                     ...auth,
                     user: res.data.user,
@@ -27,7 +45,7 @@ const Login = () => {
                 localStorage.setItem('auth', JSON.stringify(res.data))
                 navigate(location.state || '/')
             } else {
-                alert(res.data.message)
+                toast.error(res.data.message)
             }
 
         } catch (err) {
@@ -35,44 +53,49 @@ const Login = () => {
         }
     }
 
-    return (
-        <div>
-            <div className='marginStyle'>
-                <section className="my-5" >
-                    <div className="container h-100">
-                        <div className="row d-flex justify-content-center align-items-center h-100">
-                            <div className="col-lg-12 col-xl-11">
-                                <div className="card text-black" >
-                                    <div className="card-body p-md-5">
-                                        <div className="row justify-content-center">
-                                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
-                                                <form className="mx-1 mx-md-4">
-                                                    <div className="d-flex flex-row align-items-center mb-4">
-                                                        <div className="form-outline flex-fill mb-0">
-                                                            <label className="form-label" for="form3Example1c">Email</label>
-                                                            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="form3Example1c" className="form-control" required />
-                                                        </div>
-                                                    </div>
-                                                    <div className="d-flex flex-row align-items-center mb-4">
-                                                        <div className="form-outline flex-fill mb-0">
-                                                            <label className="form-label" for="form3Example4c">Password</label>
-                                                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="form3Example4c" className="form-control" required />
-                                                        </div>
-                                                    </div>
-                                                    <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                        <button onClick={handleSubmit} type="button" className="btn btn-primary btn-lg">Login</button>
-                                                    </div>
-                                                </form>
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
 
-                                            </div>
+    return (
+        <div className='my-5'>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center ">
+                    <div class="col col-xl-10">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-6 d-none d-md-block mt-5">
+                                <img src={login}
+                                    alt="login form" class="img-fluid" />
+                            </div>
+                            <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <form>
+                                        <div class="text-center mb-3 d-flex">
+                                            <h1 class="text-center">Login </h1>
+                                            <img src={logo} style={{ maxWidth: '100%', maxHeight: '70px', objectFit: 'contain' }} />
                                         </div>
-                                    </div>
+                                        <label class="form-label"><MdEmail size={25} /> Email address</label>
+                                        <div class="mb-4 row mx-1">
+                                            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <label class="form-label"><RiLockPasswordFill size={25} /> Password</label>
+                                        <div class=" mb-4 row mx-1">
+                                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <div class="mt-4 row mx-1">
+                                            <button class="btn btn-lg btn-block text-white" onClick={handleSubmit} type="button" style={{ backgroundColor: 'blueviolet' }}>Login</button>
+                                        </div>
+                                        <div class="mt-4 row mx-1">
+                                            <Link to='/register' class="btn btn-outline-dark btn-lg btn-block" type="button">Register</Link>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     )

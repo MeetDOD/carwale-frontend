@@ -8,6 +8,7 @@ import { MdAirlineSeatReclineExtra } from 'react-icons/md'
 import { BsFuelPumpFill } from 'react-icons/bs'
 import { TbStars } from 'react-icons/tb'
 import { PiCurrencyInrFill } from 'react-icons/pi'
+import toast from 'react-hot-toast';
 
 const CarsHome = () => {
     const [cars, setcars] = useState([]);
@@ -29,6 +30,8 @@ const CarsHome = () => {
 
         }
     };
+
+    const notify = () => toast.success('Added to Cart Successfully')
 
     useEffect(() => {
         getAllcars();
@@ -72,7 +75,7 @@ const CarsHome = () => {
                                     </div>
                                     <div className='text-center'>
                                         <Link className='btn my-2  ' style={{ backgroundColor: 'blueviolet', color: 'white' }} to={`/car/${p.slug}`}><AiOutlineEye size={20} className='pb-1' /> View</Link>
-                                        <button className='btn btn-outline-primary my-2 mx-3 ' onClick={() => { setcart([...cart, p]); localStorage.setItem('cart', JSON.stringify([...cart, p])) }} ><AiOutlineShoppingCart size={20} className='pb-1' /> Add To Cart</button>
+                                        <button className='btn btn-outline-primary my-2 mx-3 ' onClick={() => { setcart([...cart, p]); localStorage.setItem('cart', JSON.stringify([...cart, p])); notify() }} ><AiOutlineShoppingCart size={20} className='pb-1' /> Add To Cart</button>
                                     </div>
                                 </div>
                             </div>

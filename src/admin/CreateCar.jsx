@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Select, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading'
+import toast from 'react-hot-toast';
 
 const { Option } = Select;
 
@@ -28,6 +29,70 @@ const CreateCar = () => {
 
     const navigate = useNavigate();
 
+    const validateForm = () => {
+        if (!brand.trim()) {
+            toast.error('Car Brand is required');
+            return false;
+        }
+        if (productPictures.length === 0) {
+            toast.error('Please Provide atleast one Image');
+            return false;
+        }
+        if (!name.trim()) {
+            toast.error('Car name is required');
+            return false;
+        }
+        if (!price.trim()) {
+            toast.error('Price is required');
+            return false;
+        }
+        if (!fuelType.trim()) {
+            toast.error('FuelType is required');
+            return false;
+        }
+        if (!transmission.trim()) {
+            toast.error('Transmission is required');
+            return false;
+        }
+        if (!engineSize.trim()) {
+            toast.error('Engine Size is required');
+            return false;
+        }
+        if (!mileage.trim()) {
+            toast.error('Mileage is required');
+            return false;
+        }
+        if (!safetyrating.trim()) {
+            toast.error('Safetyrating is required');
+            return false;
+        }
+        if (!warranty.trim()) {
+            toast.error('Warranty is required');
+            return false;
+        }
+        if (!seater.trim()) {
+            toast.error('Seater is required');
+            return false;
+        }
+        if (!size.trim()) {
+            toast.error('Car Size is required');
+            return false;
+        }
+        if (!fuelTank.trim()) {
+            toast.error('FuelTank is required');
+            return false;
+        }
+        if (!description.trim()) {
+            toast.error('Description is required');
+            return false;
+        }
+        if (!shipping.trim()) {
+            toast.error('Shipping is required');
+            return false;
+        }
+        return true;
+    };
+
     const getAllCar = async () => {
         try {
             const { data } = await axios.get('https://velocity-vehicles-backend-production.up.railway.app/api/brand/getAll-brand');
@@ -46,6 +111,9 @@ const CreateCar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
         try {
             setLoading(true)
             const carData = new FormData();
@@ -72,10 +140,10 @@ const CreateCar = () => {
             const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/car/create-car', carData);
 
             if (data.success) {
-                alert('Car Created Successfully');
+                toast.success('Car Created Successfully');
                 navigate('/dashboard/admin/cars');
             } else {
-                alert('Error in Car creation');
+                toast.error('Error in Car creation');
             }
         } catch (err) {
             console.log(err);
@@ -86,6 +154,7 @@ const CreateCar = () => {
 
     useEffect(() => {
         getAllCar();
+        window.scrollTo(0, 0)
     }, []);
 
     return (

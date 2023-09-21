@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminMenu from './AdminMenu'
 import { useAuth } from '../context/auth'
 
 const AdminDashboard = () => {
     const [auth] = useAuth()
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className='container marginStyle'>
             <div className='container-fluid'>

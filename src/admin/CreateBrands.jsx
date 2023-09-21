@@ -3,6 +3,7 @@ import AdminMenu from './AdminMenu';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading'
+import toast from 'react-hot-toast';
 
 const CreateBrands = () => {
     const [name, setName] = useState('');
@@ -16,8 +17,23 @@ const CreateBrands = () => {
         setbrandPictures(files);
     };
 
+    const validateForm = () => {
+        if (!name.trim()) {
+            toast.error('Brand name is required');
+            return false;
+        }
+        if (brandPictures.length === 0) {
+            toast.error('Please upload Brand Image');
+            return false;
+        }
+        return true;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
         try {
             setLoading(true)
             const carData = new FormData();
@@ -31,10 +47,11 @@ const CreateBrands = () => {
             const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/brand/create-brand', carData);
 
             if (data.success) {
-                alert('Car Created Successfully');
-                navigate('/dashboard/admin/brands');
-            } else {
-                alert('Error in Car creation');
+                toast.success('Brand Created Successfully');
+                navigate('/dashboard/admin/allbrands');
+            }
+            else {
+                toast.error(data.message);
             }
         } catch (err) {
             console.log(err);
@@ -42,6 +59,10 @@ const CreateBrands = () => {
             setLoading(false)
         }
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className='container marginStyle'>

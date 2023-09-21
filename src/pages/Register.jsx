@@ -1,15 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { MdEmail } from 'react-icons/md'
+import { RiLockPasswordFill, RiAccountCircleFill } from 'react-icons/ri'
+import logo from '../images/logo.png'
+import register from '../images/register.png'
+import { AiFillMobile } from 'react-icons/ai'
+import { FaAddressCard } from 'react-icons/fa6'
+import toast from 'react-hot-toast';
 
 const Register = () => {
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const navigate = useNavigate()
+
+    const validateEmail = (email) => {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailPattern.test(email);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,73 +29,97 @@ const Register = () => {
                 name, email, password, phone, address
             });
             if (res.data.success) {
-                alert(res.data.message)
-                navigate('/')
-
-            } else {
-                alert(res.data.message)
+                toast.success(res.data.message)
+                navigate('/login')
             }
-
+            if (!name.trim()) {
+                toast.error('Name is required');
+                return false;
+            }
+            if (!email.trim()) {
+                toast.error('Email is required');
+                return false;
+            }
+            if (!password.trim()) {
+                toast.error('Password is required');
+                return false;
+            }
+            if (!phone.trim()) {
+                toast.error('Phone Number is required');
+                return false;
+            }
+            if (!address.trim()) {
+                toast.error('Address is required');
+                return false;
+            }
+            if (!validateEmail(email)) {
+                toast.error('Invalid Email Format');
+                return false;
+            }
         } catch (err) {
             console.log(err)
         }
     }
 
-    return (
-        <div>
-            <section className='marginStyle'>
-                <div className="container h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col-lg-12 col-xl-11">
-                            <div className="card text-black" >
-                                <div className="card-body p-md-5">
-                                    <div className="row justify-content-center">
-                                        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register</p>
-                                            <form className="mx-1 mx-md-4">
-                                                <div className="d-flex flex-row align-items-center mb-4">
-                                                    <div className="form-outline flex-fill mb-0">
-                                                        <label className="form-label" for="form3Example1c">Name</label>
-                                                        <input value={name} onChange={(e) => setName(e.target.value)} type="email" id="form3Example1c" className="form-control" required />
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
-                                                    <div className="form-outline flex-fill mb-0">
-                                                        <label className="form-label" for="form3Example1c">Email</label>
-                                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="form3Example1c" className="form-control" required />
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
-                                                    <div className="form-outline flex-fill mb-0">
-                                                        <label className="form-label" for="form3Example4c">Password</label>
-                                                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="form3Example4c" className="form-control" required />
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
-                                                    <div className="form-outline flex-fill mb-0">
-                                                        <label className="form-label" for="form3Example1c">Phone</label>
-                                                        <input value={phone} onChange={(e) => setPhone(e.target.value)} type="email" id="form3Example1c" className="form-control" required />
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
-                                                    <div className="form-outline flex-fill mb-0">
-                                                        <label className="form-label" for="form3Example1c">Address</label>
-                                                        <textarea rows={4} value={address} onChange={(e) => setAddress(e.target.value)} type="email" id="form3Example1c" className="form-control" required />
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                    <button onClick={handleSubmit} type="button" className="btn btn-primary btn-lg">Register</button>
-                                                </div>
-                                            </form>
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
 
+    return (
+        <div className='my-5'>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center ">
+                    <div class="col col-xl-10">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-6 mt-5 d-none d-md-block">
+                                <img src={register}
+                                    alt="login form" class="img-fluid" />
+                            </div>
+                            <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <form>
+                                        <div class="text-center mb-3 d-flex">
+                                            <h1 class="text-center">Register</h1>
+                                            <img src={logo} style={{ maxWidth: '100%', maxHeight: '70px', objectFit: 'contain' }} />
                                         </div>
-                                    </div>
+
+                                        <label class="form-label"><RiAccountCircleFill size={25} /> Name</label>
+                                        <div class="mb-4 row mx-1">
+                                            <input value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <label class="form-label"><MdEmail size={25} /> Email address</label>
+                                        <div class="mb-4 row mx-1">
+                                            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <label class="form-label"><RiLockPasswordFill size={25} /> Password</label>
+                                        <div class=" mb-4 row mx-1">
+                                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <label class="form-label"><AiFillMobile size={25} /> Phone Number</label>
+                                        <div class="mb-4 row mx-1">
+                                            <input value={phone} onChange={(e) => setPhone(e.target.value)} type="number" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <label class="form-label"><FaAddressCard size={25} /> Address</label>
+                                        <div class="mb-4 row mx-1">
+                                            <textarea rows={4} value={address} onChange={(e) => setAddress(e.target.value)} type="text" class="form-control form-control-lg" required />
+                                        </div>
+                                        <div class="mt-4 row mx-1">
+                                            <button class="btn btn-lg btn-block text-white" onClick={handleSubmit} type="button" style={{ backgroundColor: 'blueviolet' }}>Register</button>
+                                        </div>
+                                        <div class="mt-4 row mx-1">
+                                            <Link to='/login' class="btn btn-outline-dark btn-lg btn-block" type="button">Login</Link>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     )
 }

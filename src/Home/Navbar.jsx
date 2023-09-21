@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { useAuth } from '../context/auth'
 import { useCart } from '../context/cart'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
 
@@ -21,6 +22,7 @@ const Navbar = () => {
             token: ''
         })
         localStorage.removeItem('auth')
+        toast.success('Logged Out Successfully')
     }
 
     useEffect(() => {
@@ -46,7 +48,7 @@ const Navbar = () => {
             <nav className="navbar navbar-expand-lg fixed-top">
                 <div className="container-fluid mx-3">
                     <Link to='/'>
-                        <img src={logo} className='' style={{ width: '130px' }} />
+                        <img src={logo} style={{ width: '130px' }} />
                     </Link>
                     <button className="navbar-toggler pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <BiMenuAltRight size={35} />

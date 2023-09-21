@@ -28,7 +28,7 @@ const Footer = () => {
                             </p>
                         </div>
                         <div className="col-12 footer_credits text-center">
-                            <span>© 2023 <a href="#" target="_blank" title="Code4education">carwale</a>™. All Rights Reserved.</span>
+                            <span>© 2023 <a>carwale</a>™. All Rights Reserved.</span>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
   left: 8px;
   width: 1em;
   height: 5em;
-  background: #001435;
+  background: blueviolet;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 .lds-facebook div:nth-child(1) {

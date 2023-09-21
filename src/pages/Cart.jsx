@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import DropIn from "braintree-web-drop-in-react";
 import axios from 'axios'
 import { HiOutlineTrash } from 'react-icons/hi'
+import toast from 'react-hot-toast';
 
 const Cart = () => {
     const [cart, setcart] = useCart();
@@ -52,6 +53,7 @@ const Cart = () => {
     };
     useEffect(() => {
         getToken();
+        window.scrollTo(0, 0)
     }, [auth?.token]);
 
     const handlePayment = async () => {
@@ -66,14 +68,17 @@ const Cart = () => {
             localStorage.removeItem("cart");
             setcart([]);
             navigate("/dashboard/user/order");
-            alert("Payment Completed Successfully ");
+            toast.success("Payment Completed Successfully ");
         } catch (error) {
             console.log(error);
             setLoading(false);
         }
     };
+
+    const notify = () => toast.success('Item Removed Successfully')
+
     return (
-        <div className='marginStyle'>
+        <div className='my-5'>
             <section className="h-100 h-custom">
                 <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -124,7 +129,7 @@ const Cart = () => {
                                                                 <p className="sizePrice"> ₹ {p.price}</p>
                                                                 <button
                                                                     className="btn btn-danger"
-                                                                    onClick={() => removeCartItem(p._id)}
+                                                                    onClick={() => { removeCartItem(p._id); notify() }}
                                                                 >
                                                                     <HiOutlineTrash size={20} />
                                                                 </button>

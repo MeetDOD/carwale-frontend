@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import "./loading.css";
 
 const Loading = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <>
             <div className="container d-flex justify-content-center align-items-center">

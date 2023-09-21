@@ -23,6 +23,7 @@ import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
 import CarsHome from './Home/CarsHome';
 import CarView from './pages/CarView';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             <Route path='user/profile' element={<UserProfile/>} />
       </Route>
       </Routes>
+      <Toaster />
       <Footer/>
     </Router>
   );

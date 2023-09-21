@@ -3,6 +3,7 @@ import UserMenu from './UserMenu'
 import { useAuth } from '../context/auth'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const UserProfile = () => {
     const [auth, setAuth] = useAuth();
@@ -31,20 +32,20 @@ const UserProfile = () => {
                 phone,
                 address,
             });
-            if (data?.errro) {
-                alert(data?.error);
+            if (data?.error) {
+                toast.error(data?.error);
             } else {
                 setAuth({ ...auth, user: data?.updatedUser });
                 let ls = localStorage.getItem("auth");
                 ls = JSON.parse(ls);
                 ls.user = data.updatedUser;
                 localStorage.setItem("auth", JSON.stringify(ls));
-                alert("Profile Updated Successfully");
-                navigate('/login')
+                toast.success("Profile Updated Successfully");
+                navigate('/')
             }
         } catch (error) {
             console.log(error);
-            alert("Something went wrong");
+            toast.error("Something went wrong");
         }
     };
     return (

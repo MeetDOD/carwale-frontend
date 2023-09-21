@@ -3,6 +3,7 @@ import AdminMenu from './AdminMenu'
 import axios from 'axios'
 import CategoryForm from './BrandForm'
 import { Modal } from 'antd'
+import toast, { Toaster } from 'react-hot-toast'
 
 const CreateCategory = () => {
 
@@ -30,13 +31,13 @@ const CreateCategory = () => {
         try {
             const { data } = await axios.put(`https://velocity-vehicles-backend-production.up.railway.app/api/brand/update-brand/${selected._id}`, { name: updatedName })
             if (data?.success) {
-                alert('Brand Updated')
+                toast.success('Brand Updated Successfully')
                 setSelected(null)
                 setUpdatedName("")
                 setVisible(false)
                 getAllBrand()
             } else {
-                alert('Error Occured')
+                toast.error('Error Occured in Updating Brand')
             }
         } catch (err) {
             console.log(err)
@@ -47,10 +48,10 @@ const CreateCategory = () => {
         try {
             const { data } = await axios.delete(`https://velocity-vehicles-backend-production.up.railway.app/api/brand/delete-brand/${id}`, { name: updatedName })
             if (data?.success) {
-                alert(`${name} Deleted`)
+                toast.success('Brand Deleted Successfully')
                 getAllBrand()
             } else {
-                alert('Error Occured')
+                toast.error('Failed to Delete ${name} Brand')
             }
         } catch (err) {
             console.log(err)
@@ -71,7 +72,7 @@ const CreateCategory = () => {
                     <div className='col-md-9 my-3'>
                         <h1 className='text-center'>All Brands</h1>
                         <div className="table-responsive">
-                            <table className="table table-bordered table-hover">
+                            <table className="table table-bordered">
                                 <thead className="table-dark text-center">
                                     <tr>
                                         <th>Brand</th>
