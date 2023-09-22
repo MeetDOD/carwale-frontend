@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/brands.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Brands = () => {
     const [brand, setBrand] = useState([])
@@ -32,14 +33,14 @@ const Brands = () => {
                     <div className="row justify-content-center">
                         {brand?.map(c => (
                             <div className="col-lg-3 col-md-4 col-sm-6 mb-4 showcase_card">
-                                <a href="#faq">
+                                <Link to={`/brand/${c.slug}`}>
                                     <img
                                         decoding="async"
                                         src={`https://velocity-vehicles-backend-production.up.railway.app/${c.brandPictures}`}
                                         className="mb-4 img-fluid"
                                         style={{ maxWidth: '100%', maxHeight: '190px', objectFit: 'contain' }}
                                     />
-                                </a>
+                                </Link>
                             </div>
                         ))}
                     </div>

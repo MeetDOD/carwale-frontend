@@ -20,6 +20,7 @@ const UserProfile = () => {
         setPhone(phone);
         setEmail(email);
         setAddress(address);
+        window.scrollTo(0, 0)
     }, [auth?.user]);
 
     const handleSubmit = async (e) => {

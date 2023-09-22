@@ -21,6 +21,7 @@ const UserOrder = () => {
 
     useEffect(() => {
         if (auth?.token) getOrders();
+        window.scrollTo(0, 0)
     }, [auth?.token]);
 
     return (

@@ -51,6 +51,7 @@ const Cars = () => {
 
     useEffect(() => {
         getAllcars();
+        window.scrollTo(0, 0)
     }, []);
 
     return (
@@ -64,7 +65,7 @@ const Cars = () => {
                         <h1 className="text-center my-3">All Cars List</h1>
                         <div className="row" style={{ marginTop: '0px' }}>
                             {cars.map((p) => (
-                                <div className="col-md-12 col-lg-6 mb-lg-0 my-3">
+                                <div className="col-md-12 col-lg-4 mb-lg-0 my-3">
                                     <div className="card">
                                         <div className="d-flex justify-content-between p-3">
                                             <p className="lead mb-0">{p.brand.name}</p>
@@ -86,6 +87,7 @@ const Cars = () => {
                                                 <h6 ><BsFuelPumpFill /> : {p.fuelType}</h6>
                                             </div>
                                             <div className='text-center my-2'>
+                                                <Link className='btn mt-2 text-white' to={`/car/${p.slug}`} style={{ backgroundColor: 'blueviolet' }}>View</Link>
                                                 <Link to={`/dashboard/admin/car/${p.slug}`} className='btn btn-primary mt-2 mx-2'>Update</Link>
                                                 <button onClick={() => handleDelete(p._id)} className='btn btn-danger mt-2'>Delete</button>
                                             </div>

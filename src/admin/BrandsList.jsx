@@ -3,13 +3,11 @@ import AdminMenu from './AdminMenu'
 import axios from 'axios'
 import CategoryForm from './BrandForm'
 import { Modal } from 'antd'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 const CreateCategory = () => {
 
     const [brand, setBrand] = useState([])
-    const [name, setName] = useState("")
-    const [brandPictures, setBrandPictures] = useState("")
     const [visible, setVisible] = useState(false)
     const [selected, setSelected] = useState(null)
     const [updatedName, setUpdatedName] = useState("")
@@ -60,6 +58,7 @@ const CreateCategory = () => {
 
     useEffect(() => {
         getAllBrand();
+        window.scrollTo(0, 0)
     }, [])
 
     return (

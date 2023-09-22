@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminMenu from './AdminMenu'
 import axios from 'axios'
 // import { Select, Modal } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 // const { Option } = Select
@@ -98,10 +98,10 @@ const UpdateCar = () => {
 
     const handleDelete = async () => {
         try {
-            let ans = window.prompt('Are you Sure you want to Delete this Car');
-            if (!ans) return;
+            // let ans = window.prompt('Are you Sure you want to Delete this Car');
+            // if (!ans) return;
             const { data } = await axios.delete(`https://velocity-vehicles-backend-production.up.railway.app/api/car/delete-car/${id}`)
-            alert('Car Deleted')
+            toast.success('Car Deleted Successfully')
             navigate('/dashboard/admin/cars')
         } catch (err) {
             console.log(err)
@@ -111,6 +111,7 @@ const UpdateCar = () => {
     useEffect(() => {
         // getAllCarBrand();
         getSingleProduct();
+        window.scrollTo(0, 0)
     }, [])
 
     return (

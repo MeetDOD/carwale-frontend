@@ -48,7 +48,7 @@ const CarsHome = () => {
             <div className="container">
                 <div className="row" style={{ marginBottom: '100px', marginTop: '-40px' }}>
                     {cars.map((p) => (
-                        <div className="col-md-12 col-lg-3 mb-3 mb-lg-0">
+                        <div className="col-md-12 col-lg-3 mb-3 mb-lg-0 my-3">
                             <div className="card">
                                 <div className="d-flex justify-content-between p-3">
                                     <p className="lead mb-0">{p.brand.name}</p>
