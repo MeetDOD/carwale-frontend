@@ -8,6 +8,7 @@ import register from '../images/register.png'
 import { AiFillMobile } from 'react-icons/ai'
 import { FaAddressCard } from 'react-icons/fa6'
 import toast from 'react-hot-toast';
+import '../styles/hero.css'
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -24,6 +25,10 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateEmail(email)) {
+            toast.error('Invalid Email Format');
+            return false;
+        }
         try {
             const res = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/user/register', {
                 name, email, password, phone, address
@@ -52,10 +57,6 @@ const Register = () => {
                 toast.error('Address is required');
                 return false;
             }
-            if (!validateEmail(email)) {
-                toast.error('Invalid Email Format');
-                return false;
-            }
         } catch (err) {
             console.log(err)
         }
@@ -66,12 +67,12 @@ const Register = () => {
     }, []);
 
     return (
-        <div className='my-5'>
-            <div class="container">
+        <div className='marginStyle'>
+            <div class="container border rounded">
                 <div class="row d-flex justify-content-center align-items-center ">
                     <div class="col col-xl-10">
                         <div class="row g-0">
-                            <div class="col-md-6 col-lg-6 mt-5 d-none d-md-block">
+                            <div class="col-md-6 col-lg-6 d-none d-md-block header-img-section" style={{ marginTop: '110px' }}>
                                 <img src={register}
                                     alt="login form" class="img-fluid" />
                             </div>
@@ -83,35 +84,51 @@ const Register = () => {
                                             <img src={logo} style={{ maxWidth: '100%', maxHeight: '70px', objectFit: 'contain' }} />
                                         </div>
 
-                                        <label class="form-label"><RiAccountCircleFill size={25} /> Name</label>
-                                        <div class="mb-4 row mx-1">
-                                            <input value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control form-control-lg" required />
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <RiAccountCircleFill size={25} style={{ marginRight: '7px' }} />
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input value={name} onChange={(e) => setName(e.target.value)} placeholder='Your name' required type="text" class="form-control" />
+                                            </div>
                                         </div>
 
-                                        <label class="form-label"><MdEmail size={25} /> Email address</label>
-                                        <div class="mb-4 row mx-1">
-                                            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" class="form-control form-control-lg" required />
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <MdEmail size={25} style={{ marginRight: '7px' }} />
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input value={email} onChange={(e) => setEmail(e.target.value)} required type="email" placeholder='Your email ID' class="form-control " />
+                                            </div>
                                         </div>
 
-                                        <label class="form-label"><RiLockPasswordFill size={25} /> Password</label>
-                                        <div class=" mb-4 row mx-1">
-                                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" class="form-control form-control-lg" required />
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <RiLockPasswordFill size={25} style={{ marginRight: '7px' }} />
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input value={password} onChange={(e) => setPassword(e.target.value)} required type="password" placeholder='Your password' class="form-control " />
+                                            </div>
                                         </div>
 
-                                        <label class="form-label"><AiFillMobile size={25} /> Phone Number</label>
-                                        <div class="mb-4 row mx-1">
-                                            <input value={phone} onChange={(e) => setPhone(e.target.value)} type="number" class="form-control form-control-lg" required />
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <AiFillMobile size={25} style={{ marginRight: '7px' }} />
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input value={phone} onChange={(e) => setPhone(e.target.value)} type="number" required placeholder='Your phone number' class="form-control " />
+                                            </div>
                                         </div>
 
-                                        <label class="form-label"><FaAddressCard size={25} /> Address</label>
-                                        <div class="mb-4 row mx-1">
-                                            <textarea rows={4} value={address} onChange={(e) => setAddress(e.target.value)} type="text" class="form-control form-control-lg" required />
+                                        <div class="mx-1 d-flex flex-row align-items-center mb-4">
+                                            <FaAddressCard size={25} style={{ marginRight: '7px' }} />
+                                            <div class="form-outline flex-fill mb-0 ">
+                                                <input value={address} onChange={(e) => setAddress(e.target.value)} type="text" required placeholder='Your address' class="form-control" />
+                                            </div>
                                         </div>
-                                        <div class="mt-4 row mx-1">
-                                            <button class="btn btn-lg btn-block text-white" onClick={handleSubmit} type="button" style={{ backgroundColor: 'blueviolet' }}>Register</button>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 ">
+                                            <div class="form-outline flex-fill mb-0">
+                                                <button class="btn btn-lg text-white" onClick={handleSubmit} type="button" style={{ backgroundColor: 'blueviolet', width: '100%' }}>Register</button>
+                                            </div>
                                         </div>
-                                        <div class="mt-4 row mx-1">
-                                            <Link to='/login' class="btn btn-outline-dark btn-lg btn-block" type="button">Login</Link>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 ">
+                                            <div class="form-outline flex-fill mb-0">
+                                                <Link to='/login' class="btn btn-outline-dark btn-lg btn-block" type="button" style={{ width: '100%' }}>Login</Link>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

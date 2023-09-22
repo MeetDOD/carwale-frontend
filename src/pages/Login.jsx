@@ -7,6 +7,7 @@ import logo from '../images/logo.png'
 import login from '../images/login.png'
 import { MdEmail } from 'react-icons/md'
 import { RiLockPasswordFill } from 'react-icons/ri'
+import '../styles/hero.css'
 
 const Login = () => {
 
@@ -58,46 +59,58 @@ const Login = () => {
     }, []);
 
     return (
-        <div className='my-5'>
-            <div class="container">
-                <div class="row d-flex justify-content-center align-items-center ">
-                    <div class="col col-xl-10">
-                        <div class="row g-0">
-                            <div class="col-md-6 col-lg-6 d-none d-md-block mt-5">
-                                <img src={login}
-                                    alt="login form" class="img-fluid" />
-                            </div>
-                            <div class="col-md-6 col-lg-6 d-flex align-items-center">
-                                <div class="card-body p-4 p-lg-5 text-black">
-                                    <form>
-                                        <div class="text-center mb-3 d-flex">
-                                            <h1 class="text-center">Login </h1>
-                                            <img src={logo} style={{ maxWidth: '100%', maxHeight: '70px', objectFit: 'contain' }} />
-                                        </div>
-                                        <label class="form-label"><MdEmail size={25} /> Email address</label>
-                                        <div class="mb-4 row mx-1">
-                                            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" class="form-control form-control-lg" required />
-                                        </div>
+        <>
+            <div className='marginStyle'>
+                <div class="container border rounded">
+                    <div class="row d-flex justify-content-center align-items-center ">
+                        <div class="col col-xl-10">
+                            <div class="row g-0">
+                                <div class="col-md-6 col-lg-6 d-none d-md-block my-5 header-img-section">
+                                    <img src={login}
+                                        alt="login form" class="img-fluid" />
+                                </div>
+                                <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                                    <div class="card-body p-4 p-lg-5 text-black">
+                                        <form>
+                                            <div class="text-center mb-3 d-flex">
+                                                <h1 class="text-center">Login </h1>
+                                                <img src={logo} style={{ maxWidth: '100%', maxHeight: '70px', objectFit: 'contain' }} />
+                                            </div>
 
-                                        <label class="form-label"><RiLockPasswordFill size={25} /> Password</label>
-                                        <div class=" mb-4 row mx-1">
-                                            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" class="form-control form-control-lg" required />
-                                        </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <MdEmail size={25} style={{ marginRight: '7px' }} />
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input value={email} onChange={(e) => setEmail(e.target.value)} required type="email" placeholder='Your email ID' class="form-control" />
+                                                </div>
+                                            </div>
 
-                                        <div class="mt-4 row mx-1">
-                                            <button class="btn btn-lg btn-block text-white" onClick={handleSubmit} type="button" style={{ backgroundColor: 'blueviolet' }}>Login</button>
-                                        </div>
-                                        <div class="mt-4 row mx-1">
-                                            <Link to='/register' class="btn btn-outline-dark btn-lg btn-block" type="button">Register</Link>
-                                        </div>
-                                    </form>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <RiLockPasswordFill size={25} style={{ marginRight: '7px' }} />
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input value={password} onChange={(e) => setPassword(e.target.value)} required type="password" placeholder='Your password' class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4 ">
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <button class="btn btn-lg  text-white" onClick={handleSubmit} type="button" style={{ backgroundColor: 'blueviolet', width: '100%' }} >Login</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4 ">
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <Link to='/register' class="btn btn-outline-dark btn-lg btn-block" style={{ width: '100%' }} type="button">Register</Link>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -69,7 +69,7 @@ const CarView = () => {
                         <span className='badge bg-dark mb-3 m-2'>{car.brand.name}</span>
                         <h3 className="mb-3 mt-2">{car.name}</h3>
                     </div>
-                    <h4>{car.name} Description : </h4><h6 className='lh-base'>{car.description}</h6>
+                    <h4>{car.name} Description : </h4><h6 className='lh-base ' style={{ textAlign: 'justify' }}>{car.description}</h6>
                     <h4>Rs. {car.price}</h4>
                     <h4>Released At : {updatedAt}</h4>
                     <button style={{ backgroundColor: 'blueviolet' }} className='btn text-white my-1' onClick={() => { setcart([...cart, car]); localStorage.setItem('cart', JSON.stringify([...cart, car])); notify() }} ><AiOutlineShoppingCart size={20} className='pb-1' /> Add To Cart</button>
