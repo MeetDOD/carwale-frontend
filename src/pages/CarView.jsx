@@ -13,23 +13,38 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { useCart } from '../context/cart';
 import toast from 'react-hot-toast';
 import { AiOutlineEye } from 'react-icons/ai'
+import { PiCurrencyInrFill } from 'react-icons/pi'
 
 const CarView = () => {
     const params = useParams();
     const [car, setCar] = useState({ name: '', description: '', productPictures: [], price: '', brand: '', fuelTank: '', fuelType: '', mileage: '', safetyrating: '', warranty: '', seater: '', size: '', });
     const [cart, setcart] = useCart()
+    const [relatedCar, setRelatedCar] = useState([]);
 
     const getCar = async () => {
         try {
             const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/car/getCarById-car/${params.slug}`);
             setCar(data.car);
+            getRelatedCar(data?.car._id, data?.car.brand._id)
+            console.log(data)
         } catch (err) {
             console.log(err);
         }
     };
+
+    const getRelatedCar = async (cid, bid) => {
+        try {
+            const { data } = await axios.get(`http://localhost:5000/api/car/related-car/${cid}/${bid}`)
+            setRelatedCar(data?.cars)
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     useEffect(() => {
         if (params?.slug) {
             getCar();
+            getRelatedCar()
         } else {
             console.log('error')
         }
@@ -60,13 +75,15 @@ const CarView = () => {
 
                 <div className="col-md-6">
                     <div className='centerMob'>
-                        <img
-                            decoding="async"
-                            src={`https://velocity-vehicles-backend-production.up.railway.app/${car.brand.brandPictures}`}
-                            className="img-fluid"
-                            style={{ maxWidth: '100%', maxHeight: '40px', objectFit: 'contain' }}
-                        />
-                        <span className='badge bg-dark mb-3 m-2'>{car.brand.name}</span>
+                        <Link to={`/brand/${car.brand.name}`}>
+                            <img
+                                decoding="async"
+                                src={`https://velocity-vehicles-backend-production.up.railway.app/${car.brand.brandPictures}`}
+                                className="img-fluid"
+                                style={{ maxWidth: '100%', maxHeight: '40px', objectFit: 'contain' }}
+                            />
+                            <span className='badge mb-3 m-2' style={{ backgroundColor: 'blueviolet' }}>{car.brand.name}</span>
+                        </Link>
                         <h3 className="mb-3 mt-2">{car.name}</h3>
                     </div>
                     <h4>{car.name} Description : </h4><h6 className='lh-base ' style={{ textAlign: 'justify' }}>{car.description}</h6>
@@ -120,6 +137,56 @@ const CarView = () => {
                             </tr>
                         </thead>
                     </table>
+                </div>
+                {/* Related car to a particular Brand Start */}
+                <div className="container">
+                    <div className="row" style={{ marginBottom: '100px' }}>
+                        <div className="col-12 text-center mb-5">
+                            <h2 className="brand_title">Available {car.brand.name} Cars in Stock</h2>
+                        </div>
+                        {Array.isArray(relatedCar) ? (
+                            relatedCar.map((p) => (
+                                <div className="col-md-12 col-lg-3 mb-3 mb-lg-0 my-3">
+                                    <div className="card">
+                                        <div className="d-flex justify-content-between p-3">
+                                            <p className="lead mb-0">{p.brand.name}</p>
+                                            <div
+                                                className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                                style={{ width: '35px', height: '35px' }}>
+                                                <p className="text-white mb-0 small">
+                                                    <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.brand.brandPictures}`} alt={p.brand.name} style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }} />
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <Link to={`/car/${p.slug}`} className='text-center'>
+                                            <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '120px', objectFit: 'contain' }} className='border rounded' />
+                                        </Link>
+                                        <div className="card-body">
+                                            <h4 className="text-center mb-4">{p.name}</h4>
+                                            <div className="d-flex justify-content-between">
+                                                <h6><PiCurrencyInrFill /> : {p.price}</h6>
+                                                <h6 ><BsFuelPumpFill /> : {p.fuelType}</h6>
+                                            </div>
+                                            <div className="d-flex justify-content-between my-2">
+                                                <h6 ><TbStars /> : {p.safetyrating}</h6>
+                                                <h6 ><MdAirlineSeatReclineExtra /> : {p.seater} Seater</h6>
+                                            </div>
+                                            <div className='text-center'>
+                                                <Link className='btn my-2  ' style={{ backgroundColor: 'blueviolet', color: 'white' }} to={`/car/${p.slug}`}><AiOutlineEye size={20} className='pb-1' /> View</Link>
+                                                <button className='btn btn-outline-primary my-2 mx-3 ' onClick={() => { setcart([...cart, p]); localStorage.setItem('cart', JSON.stringify([...cart, p])); notify() }} ><AiOutlineShoppingCart size={20} className='pb-1' /> Add To Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div class="d-flex justify-content-center my-5">
+                                <div class="spinner-border" role="status" style={{ color: 'blueviolet' }}>
+                                    <span class="visually-hidden"></span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

@@ -72,13 +72,13 @@ const Cars = () => {
                                             <div
                                                 className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                                                 style={{ width: '35px', height: '35px' }}>
-                                                <p className="text-white mb-0 small">
+                                                <Link to={`/brand/${p.brand.name}`} className="text-white mb-0 small">
                                                     <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.brand.brandPictures}`} alt={p.brand.name} style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }} />
-                                                </p>
+                                                </Link>
                                             </div>
                                         </div>
-                                        <Link to={`/dashboard/admin/car/${p.slug}`} className='text-center'>
-                                            <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '190px', objectFit: 'contain' }} />
+                                        <Link to={`/dashboard/admin/car/${p.slug}`} className='text-center '>
+                                            <img className='border rounded' src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '100px', objectFit: 'contain' }} />
                                         </Link>
                                         <div className="card-body">
                                             <h4 className="text-center mb-4">{p.name}</h4>

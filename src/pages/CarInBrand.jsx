@@ -23,7 +23,6 @@ const CarInBrand = () => {
         try {
             const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/brand/getBrandBtId-brand/${params.slug}`);
             setBrand(data.brand);
-            console.log(data)
         } catch (err) {
             console.log(err);
         }
@@ -40,7 +39,7 @@ const CarInBrand = () => {
             <section id="brands" className="brand_wrapper">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 text-center mb-5">
+                        <div className="col-12 text-center mb-2">
                             <p className="brand_subtitle">Brand Collection !</p>
                             <h2 className="brand_title">{brand.name} Car showcase</h2>
                         </div>
@@ -57,7 +56,7 @@ const CarInBrand = () => {
                     </div>
                 </div>
             </section>
-
+            {/* Cars in this Brand Start */}
             <div className="container">
                 <div className="row" style={{ marginBottom: '100px', marginTop: '-40px' }}>
                     <div className="col-12 text-center mb-5">
@@ -78,7 +77,7 @@ const CarInBrand = () => {
                                         </div>
                                     </div>
                                     <Link to={`/car/${p.slug}`} className='text-center'>
-                                        <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }} />
+                                        <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '120px', objectFit: 'contain' }} className='border rounded' />
                                     </Link>
                                     <div className="card-body">
                                         <h4 className="text-center mb-4">{p.name}</h4>
@@ -107,8 +106,6 @@ const CarInBrand = () => {
                     )}
                 </div>
             </div>
-
-
         </div>
     )
 }
