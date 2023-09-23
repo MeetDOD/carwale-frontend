@@ -138,25 +138,24 @@ const CarView = () => {
                         </thead>
                     </table>
                 </div>
-                {/* Related car to a particular Brand Start */}
-                <div className="container">
-                    <div className="row" style={{ marginBottom: '100px' }}>
+                <div className="container mt-5">
+                    <div className="row">
                         <div className="col-12 text-center mb-5">
-                            <h2 className="brand_title">Available {car.brand.name} Cars in Stock</h2>
+                            <h2 className="brand_title">Related <span style={{ color: 'blueviolet' }}>{car.brand.name}</span> Cars in Stock</h2>
                         </div>
-                        {Array.isArray(relatedCar) ? (
+                        {relatedCar.length > 0 ? (
                             relatedCar.map((p) => (
                                 <div className="col-md-12 col-lg-3 mb-3 mb-lg-0 my-3">
                                     <div className="card">
                                         <div className="d-flex justify-content-between p-3">
                                             <p className="lead mb-0">{p.brand.name}</p>
-                                            <div
+                                            <Link to={`/brand/${p.brand.slug}`}
                                                 className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                                                 style={{ width: '35px', height: '35px' }}>
                                                 <p className="text-white mb-0 small">
                                                     <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.brand.brandPictures}`} alt={p.brand.name} style={{ maxWidth: '100%', maxHeight: '150px', objectFit: 'contain' }} />
                                                 </p>
-                                            </div>
+                                            </Link>
                                         </div>
                                         <Link to={`/car/${p.slug}`} className='text-center'>
                                             <img src={`https://velocity-vehicles-backend-production.up.railway.app/${p.productPictures[0]}`} alt={p.name} style={{ maxWidth: '100%', maxHeight: '120px', objectFit: 'contain' }} className='border rounded' />
@@ -180,12 +179,11 @@ const CarView = () => {
                                 </div>
                             ))
                         ) : (
-                            <div class="d-flex justify-content-center my-5">
-                                <div class="spinner-border" role="status" style={{ color: 'blueviolet' }}>
-                                    <span class="visually-hidden"></span>
-                                </div>
+                            <div className="col-md-12 text-center">
+                                <h4>Currently No Related {car.brand.name} is available.</h4>
                             </div>
                         )}
+
                     </div>
                 </div>
             </div>
