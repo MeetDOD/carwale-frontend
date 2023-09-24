@@ -34,7 +34,7 @@ const CarView = () => {
 
     const getRelatedCar = async (cid, bid) => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/car/related-car/${cid}/${bid}`)
+            const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/car/related-car/${cid}/${bid}`)
             setRelatedCar(data?.cars)
             console.log(data)
         } catch (err) {
@@ -87,7 +87,7 @@ const CarView = () => {
                         <h3 className="mb-3 mt-2">{car.name}</h3>
                     </div>
                     <h4>{car.name} Description : </h4><h6 className='lh-base ' style={{ textAlign: 'justify' }}>{car.description}</h6>
-                    <h4>Rs. {car.price}</h4>
+                    <h4>Rs. {car.price} Lakhs</h4>
                     <h4>Released At : {updatedAt}</h4>
                     <button style={{ backgroundColor: 'blueviolet' }} className='btn text-white my-1' onClick={() => { setcart([...cart, car]); localStorage.setItem('cart', JSON.stringify([...cart, car])); notify() }} ><AiOutlineShoppingCart size={20} className='pb-1' /> Add To Cart</button>
                     <Link className='btn btn-outline-primary mx-2' to='/cart'><AiOutlineEye size={20} className='pb-1' /> View Cart</Link>

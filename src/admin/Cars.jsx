@@ -83,7 +83,7 @@ const Cars = () => {
                                         <div className="card-body">
                                             <h4 className="text-center mb-4">{p.name}</h4>
                                             <div className="d-flex justify-content-between">
-                                                <h6><PiCurrencyInrFill /> : {p.price}</h6>
+                                                <h6><PiCurrencyInrFill /> : {p.price} Lakhs</h6>
                                                 <h6 ><BsFuelPumpFill /> : {p.fuelType}</h6>
                                             </div>
                                             <div className='text-center my-2'>

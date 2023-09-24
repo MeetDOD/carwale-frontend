@@ -1,10 +1,10 @@
 import React from 'react'
 import About from './About';
-import Brands from './Brands';
 import Faq from './Faq';
 import Features from './Features';
-import CarsHome from './CarsHome';
 import Hero from './Hero';
+import CarsHome from './CarsHome';
+import Brandshome from './BrandsHome';
 
 const HomeMain = () => {
     return (
@@ -12,7 +12,7 @@ const HomeMain = () => {
             <Hero />
             <About />
             <Features />
-            <Brands />
+            <Brandshome />
             <CarsHome />
             <Faq />
         </>

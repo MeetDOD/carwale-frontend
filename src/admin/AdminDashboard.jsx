@@ -12,7 +12,7 @@ const AdminDashboard = () => {
         <div className='container marginStyle'>
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-md-3 my-3'>
+                    <div className='col-md-3'>
                         <AdminMenu />
                     </div>
                     <div className='col-md-9'>

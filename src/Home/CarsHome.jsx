@@ -9,6 +9,7 @@ import { BsFuelPumpFill } from 'react-icons/bs'
 import { TbStars } from 'react-icons/tb'
 import { PiCurrencyInrFill } from 'react-icons/pi'
 import toast from 'react-hot-toast';
+import { AiFillCar } from 'react-icons/ai'
 
 const CarsHome = () => {
     const [cars, setcars] = useState([]);
@@ -21,13 +22,9 @@ const CarsHome = () => {
                 headers: { "Content-type": "application/json" }
             })
             const data_ = await data.json()
-            setcars(data_.car)
-            console.log(data_.car)
-
+            setcars(data_.car.reverse())
         } catch (error) {
             console.log(error);
-        } finally {
-
         }
     };
 
@@ -41,13 +38,13 @@ const CarsHome = () => {
         <>
             <div className="brand_wrapper" id='cars'>
                 <div className="col-12 text-center">
-                    <p className="brand_subtitle">A Wide Range of Cars Awaits!</p>
-                    <h2 className="brand_title">Cars showcase</h2>
+                    <p className="brand_subtitle">Explore an array of exciting new Cars !</p>
+                    <h2 className="brand_title">Latest Cars showcase</h2>
                 </div>
             </div>
             <div className="container">
-                <div className="row" style={{ marginBottom: '100px', marginTop: '-40px' }}>
-                    {cars.map((p) => (
+                <div className="row" style={{ marginTop: '-40px' }}>
+                    {cars.slice(0, 6).map((p) => (
                         <div className="col-md-12 col-lg-3 mb-3 mb-lg-0 my-3">
                             <div className="card">
                                 <div className="d-flex justify-content-between p-3">
@@ -66,7 +63,7 @@ const CarsHome = () => {
                                 <div className="card-body">
                                     <h4 className="text-center mb-4">{p.name}</h4>
                                     <div className="d-flex justify-content-between">
-                                        <h6><PiCurrencyInrFill /> : {p.price}</h6>
+                                        <h6><PiCurrencyInrFill /> : {p.price} Lakhs</h6>
                                         <h6 ><BsFuelPumpFill /> : {p.fuelType}</h6>
                                     </div>
                                     <div className="d-flex justify-content-between my-2">
@@ -82,7 +79,12 @@ const CarsHome = () => {
                         </div>
                     ))}
                 </div>
-            </div >
+                <div className="col-12 text-center my-5">
+                    <Link to='/cars' className='btn btn-lg text-white' style={{ backgroundColor: 'blueviolet' }}>
+                        View More <AiFillCar size={25} />
+                    </Link>
+                </div>
+            </div>
         </>
     )
 }

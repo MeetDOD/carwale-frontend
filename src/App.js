@@ -21,7 +21,7 @@ import UserOrder from './common/UserOrder';
 import UserProfile from './common/UserProfile';
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
-import CarsHome from './Home/CarsHome';
+import CarsFilterpage from './Home/CarsFilterpage';
 import CarView from './pages/CarView';
 import { Toaster } from 'react-hot-toast';
 import CarInBrand from './pages/CarInBrand';
@@ -37,17 +37,17 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/brands' element={<Brands />} />
       <Route path='/about' element={<About />} />
-      <Route path='/cars' element={<CarsHome />} />
+      <Route path='/cars' element={<CarsFilterpage />} />
       <Route path='/car/:slug' element={<CarView/>} />
       <Route path='/brand/:slug' element={<CarInBrand/>} />
       <Route path='/*' element={<NotFound/>} />
       <Route path='/dashboard' element={<AdminRoutes/>}>
             <Route path='admin' element={<AdminDashboard/>} />
             <Route path='admin/allbrands' element={<BrandsList/>} />
-            <Route path='admin/create-product' element={<CreateCar/>} />
-            <Route path='admin/create-brand' element={<CreateBrands/>} />
-            <Route path='admin/car/:slug' element={<UpdateCar/>} />
             <Route path='admin/cars' element={<Cars/>} />
+            <Route path='admin/create-brand' element={<CreateBrands/>} />
+            <Route path='admin/create-product' element={<CreateCar/>} />
+            <Route path='admin/car/:slug' element={<UpdateCar/>} />
             <Route path='admin/userorders' element={<AdminOrders/>} />
       </Route>
       <Route path='/dashboard' element={<PrivateRoute/>}>

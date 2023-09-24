@@ -223,7 +223,7 @@ const CreateCar = () => {
                                         <input
                                             type='text'
                                             value={price}
-                                            placeholder='write a car price'
+                                            placeholder='write only car amount price not include Lakhs,Cr,Rupees etc...'
                                             className='form-control'
                                             onChange={(e) => setprice(e.target.value)}
                                             required
