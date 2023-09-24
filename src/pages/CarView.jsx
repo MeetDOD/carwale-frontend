@@ -14,6 +14,9 @@ import { useCart } from '../context/cart';
 import toast from 'react-hot-toast';
 import { AiOutlineEye } from 'react-icons/ai'
 import { PiCurrencyInrFill } from 'react-icons/pi'
+import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
+import { LuGalleryHorizontal } from 'react-icons/lu'
 
 const CarView = () => {
     const params = useParams();
@@ -57,20 +60,21 @@ const CarView = () => {
 
     const imageUrls = car.productPictures.map(picture => `https://velocity-vehicles-backend-production.up.railway.app/${picture}`);
 
+    const imageGalleryData = car.productPictures.map((picture) => ({
+        original: `https://velocity-vehicles-backend-production.up.railway.app/${picture}`,
+        thumbnail: `https://velocity-vehicles-backend-production.up.railway.app/${picture}`, // You can adjust this as needed
+    }));
+
     return (
         <div className='container marginStyle'>
             <div className="row">
                 <div className="col-md-6 text-center">
                     <ReactImageTurntable images={imageUrls} className='border border-4 rounded' style={{ cursor: '-webkit-grab' }} />
                     <Tb360View size={50} className='my-3' /><br />
-                    {car.productPictures.map((image, index) => (
-                        <img className='border m-1 rounded'
-                            key={index}
-                            src={`https://velocity-vehicles-backend-production.up.railway.app/${image}`}
-                            style={{ maxWidth: '150px', height: '100px', objectFit: 'contain', cursor: 'pointer' }}
-                            alt={car.name}
-                        />
-                    ))}
+                    <div>
+                        <ImageGallery items={imageGalleryData} originalHeight={10} lazyLoad={true} showNav={false} showFullscreenButton={false} />
+                    </div>
+                    <LuGalleryHorizontal size={40} className='my-3' /><br />
                 </div>
 
                 <div className="col-md-6">
