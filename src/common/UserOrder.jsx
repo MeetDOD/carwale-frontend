@@ -12,7 +12,6 @@ const UserOrder = () => {
     const getOrders = async () => {
         try {
             const { data } = await axios.get('https://velocity-vehicles-backend-production.up.railway.app/api/user/orders');
-            console.log(data);
             setOrder(data);
         } catch (err) {
             console.log(err);

@@ -135,8 +135,6 @@ const CreateCar = () => {
             productPictures.forEach((image, index) => {
                 carData.append(`productPictures`, image);
             });
-            console.log(productPictures)
-
             const { data } = await axios.post('https://velocity-vehicles-backend-production.up.railway.app/api/car/create-car', carData);
 
             if (data.success) {

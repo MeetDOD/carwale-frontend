@@ -18,12 +18,8 @@ const Cars = () => {
             })
             const data_ = await data.json()
             setcars(data_.car)
-            console.log(data_.car)
-
         } catch (error) {
             console.log(error);
-        } finally {
-
         }
     };
 

@@ -18,7 +18,6 @@ const CreateCategory = () => {
             const { data } = await axios.get('https://velocity-vehicles-backend-production.up.railway.app/api/brand/getAll-brand')
             if (data.success) {
                 setBrand(data.brand)
-                console.log(data)
             }
         } catch (err) {
             console.log(err)

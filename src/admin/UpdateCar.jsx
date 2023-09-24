@@ -98,8 +98,6 @@ const UpdateCar = () => {
 
     const handleDelete = async () => {
         try {
-            // let ans = window.prompt('Are you Sure you want to Delete this Car');
-            // if (!ans) return;
             const { data } = await axios.delete(`https://velocity-vehicles-backend-production.up.railway.app/api/car/delete-car/${id}`)
             toast.success('Car Deleted Successfully')
             navigate('/dashboard/admin/cars')

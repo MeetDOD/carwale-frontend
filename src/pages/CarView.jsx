@@ -29,7 +29,6 @@ const CarView = () => {
             const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/car/getCarById-car/${params.slug}`);
             setCar(data.car);
             getRelatedCar(data?.car._id, data?.car.brand._id)
-            console.log(data)
         } catch (err) {
             console.log(err);
         }
@@ -39,7 +38,6 @@ const CarView = () => {
         try {
             const { data } = await axios.get(`https://velocity-vehicles-backend-production.up.railway.app/api/car/related-car/${cid}/${bid}`)
             setRelatedCar(data?.cars)
-            console.log(data)
         } catch (err) {
             console.log(err)
         }
@@ -70,7 +68,7 @@ const CarView = () => {
             <div className="row">
                 <div className="col-md-6 text-center">
                     <ReactImageTurntable images={imageUrls} className='border border-4 rounded' style={{ cursor: '-webkit-grab' }} />
-                    <Tb360View size={50} className='my-3' /><br />
+                    <Tb360View size={50} className='' /><br />
                     <div>
                         <ImageGallery items={imageGalleryData} originalHeight={10} lazyLoad={true} showNav={false} showFullscreenButton={false} />
                     </div>
