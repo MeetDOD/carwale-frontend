@@ -44,7 +44,7 @@ const CarsHome = () => {
             </div>
             <div className="container">
                 <div className="row" style={{ marginTop: '-40px' }}>
-                    {cars.slice(0, 6).map((p) => (
+                    {cars.slice(0, 8).map((p) => (
                         <div className="col-md-12 col-lg-3 mb-3 mb-lg-0 my-3">
                             <div className="card">
                                 <div className="d-flex justify-content-between p-3">
