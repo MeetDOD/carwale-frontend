@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
-import { MdEmail } from 'react-icons/md'
-import { RiLockPasswordFill, RiAccountCircleFill } from 'react-icons/ri'
-import logo from '../images/logo.png'
 import register from '../images/register.png'
-import { AiFillMobile } from 'react-icons/ai'
-import { FaAddressCard } from 'react-icons/fa6'
 import toast from 'react-hot-toast';
 import '../styles/hero.css'
 
